@@ -1,55 +1,45 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import useSWR from 'swr';
 import axios from 'axios';
 
 import UserCard from '../components/UserCard';
 
+const fetcher = url => axios.get(url)
+  .then(res => res.data.data)
+  .catch(err => {
+    if (err.response.status === 404) {
+      const error = new Error('User not found.');
+      error.status = 404;
+      throw error;
+    }
+
+    throw err;
+  });
+
 export default function User() {
   const { userId } = useParams();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  const handleGetUser = useCallback(() => {
-    setLoading(true);
-    setError(false);
-    axios.get(`https://reqres.in/api/users/${userId}`)
-      .then(response => {
-        setLoading(false);
-        if (response.data && response.data.data) {
-          setUser(response.data.data);
-        }
-      })
-      .catch(error => {
-        setLoading(false);
-        setError(true);
-      });
-  }, [userId]);
-
-  useEffect(() => {
-    handleGetUser();
-  }, [handleGetUser]);
-
-  const handleRetry = () => {
-    handleGetUser();
-  };
+  const { data: user, error } = useSWR(`https://reqres.in/api/users/${userId}`, fetcher, {
+    onErrorRetry: (error) => {
+      if (error.status === 404) return;
+    },
+  });
 
   if (!userId) {
     return null;
   }
 
   let content;
-  if (error) {
+  if (error && error.status === 404) {
     content = (
-      <p>Something went wrong <button onClick={handleRetry}>Retry</button></p>
+      <p>User not found</p>
     );
-  } else if (loading) {
+  } else if (error) {
     content = (
-      <p>Loading...</p>
+      <p>Something went wrong</p>
     );
   } else if (!user) {
     content = (
-      <p>User not found</p>
+      <p>Loading...</p>
     );
   } else {
     content = (
