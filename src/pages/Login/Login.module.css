@@ -1,0 +1,14 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hintText {
+  color: rgb(128, 128, 128);
+}
+
+.loginButton {
+  width: 100px;
+  margin-top: 10px;
+}
