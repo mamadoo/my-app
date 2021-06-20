@@ -89,7 +89,7 @@ function Login() {
 
         <input
           type='text'
-          placeholder='eve.holt@reqres.in'
+          placeholder='Hint: eve.holt@reqres.in'
           {...email}
           autoComplete='new-password'
           onKeyUp={handleKeyUp}
@@ -108,7 +108,7 @@ function Login() {
 
         <input
           type='password'
-          placeholder='cityslicka'
+          placeholder='Hint: cityslicka'
           {...password}
           autoComplete='new-password'
           onKeyUp={handleKeyUp}
