@@ -8,7 +8,15 @@
   color: rgb(128, 128, 128);
 }
 
+.passwordSection {
+  margin-top: 8px;
+}
+
 .loginButton {
   width: 100px;
   margin-top: 10px;
+}
+
+.errorText {
+  color: red;
 }

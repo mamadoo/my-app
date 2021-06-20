@@ -87,12 +87,12 @@ function Login() {
 
         {
           formErrors.emailError && (
-            <p style={{ color: 'red' }}>{formErrors.emailErrorMessage}</p>
+            <p className={styles.errorText}>{formErrors.emailErrorMessage}</p>
           )
         }
       </label>
 
-      <label style={{ marginTop: 10 }}>
+      <label className={styles.passwordSection}>
         Password
         <br />
 
@@ -105,14 +105,14 @@ function Login() {
 
         {
           formErrors.passwordError && (
-            <p style={{ color: 'red' }}>{formErrors.passwordErrorMessage}</p>
+            <p className={styles.errorText}>{formErrors.passwordErrorMessage}</p>
           )
         }
       </label>
 
       {
         error && (
-          <p style={{ color: 'red' }}>{error}</p>
+          <p className={styles.errorText}>{error}</p>
         )
       }
 
