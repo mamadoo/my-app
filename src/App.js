@@ -6,6 +6,7 @@ import PublicRoute from "./components/PublicRoute";
 import Login from './pages/Login/index';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import User from './pages/User';
 
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <PublicRoute path="/login" component={Login} />
+              <PrivateRoute path="/user/:userId" component={User} />
               <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
           </div>

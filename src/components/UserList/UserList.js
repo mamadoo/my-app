@@ -11,6 +11,7 @@ const UserList = ({ users }) => {
         users.map(user => (
           <UserListItem
             key={user.id}
+            id={user.id}
             firstName={user.first_name}
             lastName={user.last_name}
             avatar={user.avatar}

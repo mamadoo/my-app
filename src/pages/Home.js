@@ -33,7 +33,7 @@ function Home() {
         setLoading(false);
         setError(true);
       });
-    };
+  };
 
   const handlePageClick = data => {
     setPageNumber(data.selected);
