@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../components/useAuth';
 import useFormInput from '../../components/useFormInput';
-import { ENTER_KEY_CODE } from '../../utils';
+import { ENTER_KEY_CODE, isValidEmail } from '../../utils';
 
 import styles from './Login.module.css';
 
@@ -29,6 +29,9 @@ function Login() {
     if (!email.value) {
       errors.emailError = true;
       errors.emailErrorMessage = 'Email not entered.'
+    } else if (!isValidEmail(email.value)) {
+      errors.emailError = true;
+      errors.emailErrorMessage = 'Please enter valid email address'
     }
 
     if (!password.value) {
