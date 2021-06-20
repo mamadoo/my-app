@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../components/useAuth';
 import useFormInput from '../../components/useFormInput';
+import { ENTER_KEY_CODE } from '../../utils';
 
 import styles from './Login.module.css';
 
@@ -68,6 +69,14 @@ function Login() {
     });
   };
 
+  const handleKeyUp = (event) => {
+    const keyCode = event.keyCode;
+
+    if (keyCode === ENTER_KEY_CODE) {
+      handleLogin();
+    }
+  };
+
   return (
     <div className={styles.loginContainer}>
       Login
@@ -83,6 +92,7 @@ function Login() {
           placeholder='eve.holt@reqres.in'
           {...email}
           autoComplete='new-password'
+          onKeyUp={handleKeyUp}
         />
 
         {
@@ -101,6 +111,7 @@ function Login() {
           placeholder='cityslicka'
           {...password}
           autoComplete='new-password'
+          onKeyUp={handleKeyUp}
         />
 
         {
