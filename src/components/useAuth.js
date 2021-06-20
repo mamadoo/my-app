@@ -34,8 +34,8 @@ function useProvideAuth() {
         .catch(error => {
           let errorMessage = '';
 
-          if (error.response.status === 401){
-            errorMessage = error.response.data.message;
+          if (error.response && (error.response.status === 400 || error.response.status === 401)){
+            errorMessage = error.response.data.error;
           } else {
             errorMessage = 'Something went wrong. Please try again later.';
           }
